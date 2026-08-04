@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_QUAKE_EVENT'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_QUAKE_EVENT'
+  }
+}
+define service ZUI_QUAKE_EVENT_O4 provider contracts odata_v4_ui {
+  expose ZC_QUAKE_EVENT as QuakeEvent;
+}

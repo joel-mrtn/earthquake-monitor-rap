@@ -1,0 +1,49 @@
+managed implementation in class ZBP_R_QUAKE_EVENT unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_QUAKE_EVENT alias QuakeEvent
+persistent table zquake_event
+extensible
+draft table zquake_event_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+{
+  field ( readonly )
+  UUID,
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( numbering : managed )
+  UUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zquake_event corresponding extensible
+    {
+      UUID               = UUID;
+      EventID            = EVENT_ID;
+      EventTime          = EVENT_TIME;
+      Magnitude          = MAGNITUDE;
+      Place              = PLACE;
+      LocalCreatedBy     = LOCAL_CREATED_BY;
+      LocalCreatedAt     = LOCAL_CREATED_AT;
+      LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+      LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+      LastChangedAt      = LAST_CHANGED_AT;
+    }
+
+}
